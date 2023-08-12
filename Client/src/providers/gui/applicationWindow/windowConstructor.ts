@@ -41,11 +41,7 @@ class WindowBuilder {
 
     const window = new ApplicationWindow(
       this.winId,
-      {
-        windowHeight: this.windowOptions.windowHeight ?? 400,
-        windowWidth: this.windowOptions.windowWidth ?? 700,
-        windowTitle: this.windowOptions.windowTitle ?? "",
-      },
+      this.windowOptions,
       applicationContent
     );
 

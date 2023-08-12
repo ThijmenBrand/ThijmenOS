@@ -2,7 +2,7 @@ import * as commands from "./commands/index.js";
 import user from "../bin/user.js";
 import startup from "../bin/startup.js";
 
-startup({});
+startup();
 
 class global {
   static #vars = {};

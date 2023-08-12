@@ -1,5 +1,10 @@
 import { CreateElementFromString } from "../helpers";
 import { window, windowSelectors } from "./defaults";
+import WindowOptions from "@ostypes/WindowTypes";
+
+interface WindowElementParams extends WindowOptions {
+  windowId: number;
+}
 
 class WindowElement {
   private windowContainer: HTMLDivElement;
@@ -7,10 +12,7 @@ class WindowElement {
   private dimentions: { height: number; width: number };
 
   constructor(
-    height: number,
-    width: number,
-    windowTitle: string,
-    windowId: number
+    {height, width, windowId, title}: WindowElementParams
   ) {
     this.windowContainer = CreateElementFromString(window);
     this.windowContainer.setAttribute("data-id", windowId.toString());
@@ -18,7 +20,7 @@ class WindowElement {
     this.dimentions = { height: height, width: width };
 
     this.SetWindowDimentions();
-    this.SetWindowTitle(windowTitle);
+    this.SetWindowTitle(title);
   }
 
   private SetWindowTitle(title: string) {
@@ -59,19 +61,23 @@ class WindowElement {
     return { yes, no };
   }
 
+  public SetzIndex(index: string) {
+    this.windowContainer.style.zIndex = index;
+  }
+
   public Destroy() {
     this.windowContainer.remove();
   }
 
   public Action(event: keyof HTMLElementEventMap, action: any) {
     const register = () => {
-      this.windowContainer.addEventListener(event, action);
+      this.windowContainer.getElementsByClassName(windowSelectors.windowHeaderSelector)[0].addEventListener(event, action);
 
       return this;
     };
 
     const remove = () => {
-      this.windowContainer.removeEventListener(event, action);
+      this.windowContainer.getElementsByClassName(windowSelectors.windowHeaderSelector)[0].removeEventListener(event, action);
 
       return this;
     };
@@ -89,7 +95,7 @@ class WindowElement {
 
   public Render() {
     document
-      .getElementById("main-application-container")!
+      .getElementById("desktop")!
       .appendChild(this.windowContainer);
   }
 }

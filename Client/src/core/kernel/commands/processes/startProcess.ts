@@ -15,7 +15,7 @@ class StartProcess implements ICommand {
     this._name = args.name;
   }
 
-  public async Handle(process: BaseProcess): Promise<number> {
+  public async Handle(process?: BaseProcess): Promise<number> {
     const mimetype = this._exePath.split(".").at(-1);
 
     let name = this._name;

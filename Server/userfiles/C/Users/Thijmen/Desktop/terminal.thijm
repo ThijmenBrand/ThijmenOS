@@ -1,5 +1,5 @@
 {
   "name": "Terminal",
   "iconLocation": "C/ProgramFiles/terminal/icon.svg",
-  "exeLocation": "C/OperatingSystem/thijm32/dsk/dsk.js"
+  "exeLocation": "C/ProgramFiles/terminal/terminal.js"
 }

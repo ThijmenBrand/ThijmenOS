@@ -3,12 +3,10 @@ import { ICommand } from "@ostypes/CommandTypes";
 import javascriptOs from "@inversify/inversify.config";
 import types from "@ostypes/types";
 import { CreateFile } from "@providers/filesystemEndpoints/filesystem";
-import DesktopMethods from "@providers/desktop/desktopMethods";
 import FileSystem from "@core/fileSystem/interfaces/fileSystem";
 import { FileAccessOptions } from "@core/fileSystem/enums/fileAccess";
 
 class TouchCommand implements ICommand {
-  private readonly _desktop = javascriptOs.get<DesktopMethods>(types.Desktop);
   private readonly _fileSystem = javascriptOs.get<FileSystem>(types.FileSystem);
 
   private _props: Mkdir;
@@ -39,10 +37,6 @@ class TouchCommand implements ICommand {
       userId: validated.userId,
       access: validated.access,
     });
-
-    this._desktop.RefreshDesktop();
-
-    console.log(fh);
 
     return fh.id;
   }

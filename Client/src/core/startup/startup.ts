@@ -12,7 +12,7 @@ import ApplicationManager from "@core/applicationManager/applicationManagerMetho
 import Settings from "@core/settings/settingsMethodShape";
 import StartupMethodShape from "./startupMethodShape";
 import AuthenticationMethodShape from "@providers/authentication/authenticationMethodShape";
-import DesktopMethods from "@providers/desktop/desktopMethods";
+import StartProcess from "@core/kernel/commands/processes/startProcess";
 
 @injectable()
 class Startup implements StartupMethodShape {
@@ -21,7 +21,6 @@ class Startup implements StartupMethodShape {
   private readonly _settings: Settings;
   private readonly _authenticationGuiProvider: AuthenticationGuiShape;
   private readonly _authenticationProvider: AuthenticationMethodShape;
-  private readonly _desktop: DesktopMethods;
 
   constructor(
     @inject(types.Kernel) kernel: Kernel,
@@ -29,14 +28,12 @@ class Startup implements StartupMethodShape {
     @inject(types.Settings) settings: Settings,
     @inject(types.AuthenticationGui) authenticationGui: AuthenticationGuiShape,
     @inject(types.Authentication) authentication: AuthenticationMethodShape,
-    @inject(types.Desktop) desktop: DesktopMethods
   ) {
     this._kernel = kernel;
     this._appManager = appManager;
     this._settings = settings;
     this._authenticationGuiProvider = authenticationGui;
     this._authenticationProvider = authentication;
-    this._desktop = desktop;
   }
 
   public async InitialiseOperatingSystem() {
@@ -68,7 +65,8 @@ class Startup implements StartupMethodShape {
 
   private async UserAuthenticated() {
     this._appManager.FetchInstalledApps();
-    this._desktop.LoadDesktop();
+
+    new StartProcess({exePath: "C/OperatingSystem/thijm32/dsk/dsk.js"}).Handle();
   }
 }
 

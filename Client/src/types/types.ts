@@ -16,7 +16,6 @@ const types = {
   Mediator: Symbol.for("Mediator"),
   Authentication: Symbol.for("Authentication"),
   AuthenticationGui: Symbol.for("AuthenticationGui"),
-  Desktop: Symbol.for("Desktop"),
   FileSystem: Symbol.for("FileSystem"),
 };
 

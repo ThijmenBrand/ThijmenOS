@@ -17,17 +17,11 @@ import ISettings from "@core/settings/settingsMethodShape";
 import Settings from "@core/settings/settings";
 import MemoryMethods from "@core/memory/memoryMethodShape";
 import Memory from "@core/memory/memory";
-import Window from "@providers/gui/applicationWindow/applicationWindow";
-import CreateWindow from "@providers/gui/applicationWindow/windowConstructor";
-import IWindow from "@providers/gui/applicationWindow/interfaces/applicationWindowMethodShape";
-import ICreateWindow from "@providers/gui/applicationWindow/interfaces/windowConstructorMethods";
 import Mediator from "@core/kernel/commands/Mediator";
 import AuthenticationMethodShape from "@providers/authentication/authenticationMethodShape";
 import Authentication from "@providers/authentication/authentication";
 import AuthenticationGui from "@providers/gui/authentication/authenticationGuiProvider";
 import AuthenticationMethodShapeGui from "@providers/gui/authentication/authenticationGuiProvider";
-import DesktopMethods from "@providers/desktop/desktopMethods";
-import Desktop from "@providers/desktop/desktop";
 import ApplicationSettingsMethods from "@core/settings/individualSettings/applicationsMethods";
 import ApplicationSettings from "@core/settings/individualSettings/applicationSettings";
 import FileSystemMethods from "@core/fileSystem/interfaces/fileSystem";
@@ -74,8 +68,6 @@ javascriptOs
   .inSingletonScope();
 javascriptOs.bind<IKernel>(types.Kernel).to(Kernel);
 javascriptOs.bind<MemoryMethods>(types.Memory).to(Memory).inSingletonScope();
-javascriptOs.bind<IWindow>(types.window).to(Window);
-javascriptOs.bind<ICreateWindow>(types.CreateWindow).to(CreateWindow);
 javascriptOs.bind<Mediator>(types.Mediator).to(Mediator);
 javascriptOs
   .bind<AuthenticationMethodShape>(types.Authentication)
@@ -84,7 +76,6 @@ javascriptOs
 javascriptOs
   .bind<AuthenticationMethodShapeGui>(types.AuthenticationGui)
   .to(AuthenticationGui);
-javascriptOs.bind<DesktopMethods>(types.Desktop).to(Desktop).inSingletonScope();
 javascriptOs
   .bind<FileSystemMethods>(types.FileSystem)
   .to(FileSystem)

@@ -25,11 +25,6 @@
   width: 100%;
 }
 
-.overlay-element {
-  width: 100%;
-  height: 93vh;
-}
-
 #display-too-small {
   position: absolute;
   height: 100%;

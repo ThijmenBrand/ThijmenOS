@@ -6,8 +6,7 @@
   bottom: 0 !important;
   width: 100% !important;
   height: 100% !important;
-  z-index: 50 !important;
-}
+} 
 
 .app-page {
   border-radius: 0px 0px 10px 10px;

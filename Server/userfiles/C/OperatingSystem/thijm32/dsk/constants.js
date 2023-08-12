@@ -1,4 +1,4 @@
 const memoryKey = "Desktop-Memory-Key";
-const desktopElement = document.getElementById("main-application-container");
+const desktopElement = document.getElementById("desktop");
 
 export { memoryKey, desktopElement };

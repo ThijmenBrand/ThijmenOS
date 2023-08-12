@@ -158,6 +158,7 @@ class FileIcon {
     if (this._iconHasError) throw new Error("App has error");
 
     if (metadata.mimeType === "thijm") {
+      console.log(metadata);
       OS.pstart(metadata.exeLocation);
       return;
     }

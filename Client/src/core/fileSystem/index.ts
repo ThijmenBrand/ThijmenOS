@@ -94,7 +94,7 @@ class FileSystem implements FileSystemMethods {
       return true as T;
     }
 
-    if (!targetPath) return false as T;
+    if (!targetPath) return true as T;
 
     const targetFile = this._knownFiles[targetPath];
 

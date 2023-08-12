@@ -1,7 +1,11 @@
-export interface WindowOptions {
-  windowHeight: number;
-  windowWidth: number;
-  windowTitle: string;
+type Dimentions = {
+  height: number;
+  width: number;
+  fullScreen?: boolean;
 }
 
-export default WindowOptions;
+export interface WindowOptions extends Dimentions {
+  title: string;
+}
+
+export default	WindowOptions;
