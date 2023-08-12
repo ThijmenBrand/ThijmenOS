@@ -7,6 +7,8 @@ import GenerateUUID from "../utils/generateUUID.js";
 import { appIcon, fileIconSelectors } from "./constants.js";
 import fileIcons from "../../../../ProgramFiles/fileexplorer/icons/icons.js";
 import { root } from "../../../../ProgramFiles/bin/enums/root.js";
+import { NO_RESOURCE_ACCESS } from "../../../../ProgramFiles/bin/errors/noResourceError.js";
+import { COULD_NOT_OPEN_FILE } from "../../../../ProgramFiles/bin/errors/fileErrors.js";
 
 class FileIcon {
   iconContainerElement;
@@ -39,7 +41,7 @@ class FileIcon {
   async GetFileConfigurations(filePath) {
     const fileName = filePath.split("/").at(-1);
     if (!fileName) {
-      throw new Error("a");
+      throw new Error("could not get filename");
     }
 
     const fileArray = fileName.split(".");
@@ -90,7 +92,11 @@ class FileIcon {
 
     const fh = await OS.fopen(path, READ);
 
-    if (typeof fh === "string") {
+    if(fh === NO_RESOURCE_ACCESS) {
+      throw new Error(`no read access to resource: ${path}`);
+    }
+
+    if (fh === COULD_NOT_OPEN_FILE) {
       throw new Error(fh);
     }
 

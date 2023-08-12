@@ -54,8 +54,6 @@ export abstract class BaseProcess<
   protected Startup(metadata: Metadata, args?: string): number {
     const code = this.code as Thread | ApplicationWindow;
 
-    console.log("a");
-
     code.Message({
       id: "startup",
       data: {

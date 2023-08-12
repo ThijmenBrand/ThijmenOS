@@ -63,8 +63,6 @@ class Authentication implements AuthenticationMethodShape {
     allUsers.splice(rootUser, 1);
     this._userAccounts = allUsers;
 
-    console.log(this._userAccounts.length);
-
     const moreThenOneUser = this._userAccounts.length > 1;
     if (moreThenOneUser) {
       return false;
