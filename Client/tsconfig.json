@@ -1,0 +1,56 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "moduleResolution": "Node",
+    "baseUrl": "./src/",
+    "paths": {
+      "@ostypes/*": [
+        "types/*"
+      ],
+      "@core/*": [
+        "core/*"
+      ],
+      "@utils/*": [
+        "utils/*"
+      ],
+      "@providers/*": [
+        "providers/*"
+      ],
+      "@inversify/*": [
+        "../*"
+      ]
+    },
+    "types": [
+      "node",
+      "jest",
+      "reflect-metadata"
+    ],
+    "strict": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "skipLibCheck": true,
+    "allowJs": true
+  },
+  "include": [
+    "src/**/*.ts",
+    "tests/**/*.ts",
+    "*.json",
+    "src/utils/thread.js"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}

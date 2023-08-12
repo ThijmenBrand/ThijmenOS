@@ -1,0 +1,17 @@
+{
+  "name": "thijmenos",
+  "version": "1.0.0",
+  "description": "",
+  "workspaces": [
+    "Client",
+    "Common",
+    "Server"
+  ],
+  "scripts": {
+    "client": "npm --prefix ./Client run dev",
+    "server": "npm --prefix ./Server run dev"
+  },
+  "keywords": [],
+  "author": "ThijmenBrand",
+  "license": "ISC"
+}

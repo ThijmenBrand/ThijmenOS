@@ -1,0 +1,94 @@
+{
+  "sound": {
+    "volume": 100,
+    "inputDevice": null,
+    "outputDevice": null,
+    "volumeMixer": null
+  },
+  "storage": null,
+  "bluetooth": null,
+  "network": null,
+  "applications": {
+    "installedApplications": [
+      {
+        "applicationIdentifier": "1",
+        "name": "Explorer",
+        "iconLocation": "C/ProgramFiles/fileexplorer/fileexplorer-icon.svg",
+        "exeLocation": "C/ProgramFiles/fileexplorer/index.html",
+        "mimeTypes": [
+          "dir"
+        ],
+        "permissions": [
+          0
+        ]
+      },
+      {
+        "applicationIdentifier": "2",
+        "name": "NoteBlock",
+        "iconLocation": "C/ProgramFiles/noteblock/noteblock-icon.svg",
+        "exeLocation": "C/ProgramFiles/noteblock/index.html",
+        "mimeTypes": [
+          "txt",
+          "json",
+          "html",
+          "js",
+          "css"
+        ],
+        "permissions": [
+          0
+        ]
+      },
+      {
+        "applicationIdentifier": "3",
+        "name": "terminal",
+        "iconLocation": "C/ProgramFiles/terminal/terminal-icon.svg",
+        "exeLocation": "C/ProgramFiles/terminal/",
+        "mimeTypes": [],
+        "permissions": [
+          0
+        ]
+      },
+      {
+        "applicationIdentifier": "4",
+        "name": "debug",
+        "iconLocation": "C/ProgramFiles/debug/-icon.svg",
+        "exeLocation": "C/ProgramFiles/debug/",
+        "mimeTypes": [],
+        "permissions": [
+          0
+        ]
+      }
+    ],
+    "defaultApplications": {
+      "txt": "2",
+      "html": "2",
+      "js": "2",
+      "css": "2",
+      "dir": "1"
+    },
+    "startupApplications": null
+  },
+  "accounts": {
+    "1": {
+      "userId": "1",
+      "username": "root",
+      "email": "root@thijmenbrand.nl",
+      "password": "Welkom01"
+    },
+    "2": {
+      "userId": "2",
+      "username": "thijmen",
+      "email": "Thijmen@ik.nu",
+      "password": "Welkom01",
+      "pincode": "12345",
+      "preferences": {
+        "background": "C/images/wallpapers/SnowySunrise.webp",
+        "colors": null,
+        "themes": null,
+        "lockscreen": null,
+        "startMenu": null,
+        "fonts": null
+      }
+    }
+  }
+}
