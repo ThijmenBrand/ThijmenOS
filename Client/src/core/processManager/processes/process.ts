@@ -112,11 +112,12 @@ export class Process {
       });
 
       //TODO: Create propper startup for window
-      applicationWindow.OnLoad(() =>
-        this.Startup({
-          parentPid: this.parentPid,
-        })
-      );
+      applicationWindow.OnLoad(() => {
+        applicationWindow.Message({
+          id: "startup",
+          data: "",
+        });
+      });
 
       this.windows.push(applicationWindow);
     };

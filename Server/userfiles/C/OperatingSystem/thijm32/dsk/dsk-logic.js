@@ -3,6 +3,9 @@ import * as OS from "../../../ProgramFiles/bin/index.js";
 import { memoryKey } from "./constants.js";
 import FileIcon from "./fileIcon/fileIcon.js";
 
+console.log("a");
+window.addEventListener("message", (ev) => console.log(ev));
+
 OS.startup(initialiseDesktop);
 
 function initialiseDesktop() {
