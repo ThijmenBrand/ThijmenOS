@@ -5,7 +5,7 @@
 // import types from "@ostypes/types";
 // import { Permissions } from "@thijmen-os/common";
 // import { GrantPermission } from "@thijmen-os/prompt";
-// import { Process } from "@core/processManager/interfaces/baseProcess";
+// import { Process } from "@core/processManager/interfaces/Process";
 // import Exit from "@providers/error/systemErrors/Exit";
 
 // class AskPermissionCommand implements ICommand {

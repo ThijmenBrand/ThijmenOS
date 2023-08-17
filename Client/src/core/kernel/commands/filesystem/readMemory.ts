@@ -1,5 +1,5 @@
 import MemoryMethodShape from "@core/memory/memoryMethodShape";
-import { BaseProcess } from "@core/processManager/processes/baseProcess";
+import { Process } from "@core/processManager/processes/process";
 import javascriptOs from "@inversify/inversify.config";
 import { ICommand } from "@ostypes/CommandTypes";
 import { errors } from "../errors";
@@ -14,7 +14,7 @@ class ReadMemory implements ICommand {
     this._memoryKey = memoryKey;
   }
 
-  public Handle(Process: BaseProcess): number | unknown {
+  public Handle(Process: Process): number | unknown {
     if (!this._memoryKey) {
       return errors.ParameterError;
     }

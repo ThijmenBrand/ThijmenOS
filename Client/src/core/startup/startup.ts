@@ -27,7 +27,7 @@ class Startup implements StartupMethodShape {
     @inject(types.AppManager) appManager: ApplicationManager,
     @inject(types.Settings) settings: Settings,
     @inject(types.AuthenticationGui) authenticationGui: AuthenticationGuiShape,
-    @inject(types.Authentication) authentication: AuthenticationMethodShape,
+    @inject(types.Authentication) authentication: AuthenticationMethodShape
   ) {
     this._kernel = kernel;
     this._appManager = appManager;
@@ -66,7 +66,11 @@ class Startup implements StartupMethodShape {
   private async UserAuthenticated() {
     this._appManager.FetchInstalledApps();
 
-    new StartProcess({exePath: "C/OperatingSystem/thijm32/dsk/dsk.js"}).Handle();
+    const desktop = await new StartProcess({
+      exePath: "C/OperatingSystem/thijm32/dsk/dsk.js",
+    }).Handle();
+
+    if (desktop === 1) throw new Error("Desktop could not load");
   }
 }
 

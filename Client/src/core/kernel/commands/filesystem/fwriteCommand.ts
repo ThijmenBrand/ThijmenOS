@@ -1,5 +1,5 @@
 import { ICommand } from "@ostypes/CommandTypes";
-import { BaseProcess } from "@core/processManager/processes/baseProcess";
+import { Process } from "@core/processManager/processes/process";
 import { WriteFile } from "@providers/filesystemEndpoints/filesystem";
 import { FileAccessOptions } from "@core/fileSystem/enums/fileAccess";
 
@@ -12,7 +12,7 @@ class FWrite implements ICommand {
     this._content = props.content;
   }
 
-  public async Handle(process: BaseProcess): Promise<string | number> {
+  public async Handle(process: Process): Promise<string | number> {
     const fileHandle = process.fileHandles.find(
       (handle) => (handle.id = this._fileHandle)
     );

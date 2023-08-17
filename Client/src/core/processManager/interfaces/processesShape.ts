@@ -1,11 +1,11 @@
 import Exit from "@providers/error/systemErrors/Exit";
 import MessageBus from "../ipc/messageBus";
-import { BaseProcess } from "../processes/baseProcess";
+import { Process } from "../processes/process";
 import MqFlag from "../types/messageQueueFlags";
 
 interface ProcessesShape {
-  RegisterProcess(process: BaseProcess): void;
-  FindProcess(pid: number): BaseProcess | Exit;
+  RegisterProcess(process: Process): void;
+  FindProcess(pid: number): Process | Exit;
   RemoveProcess(pid: number): Exit;
   OpenMessageQueue(
     pid: number,
@@ -15,7 +15,7 @@ interface ProcessesShape {
   ): Exit | MessageBus;
   FreeMessageBus(id: number, pid: number): Exit;
   FindMessageBus(msgBusId: number): MessageBus | Exit;
-  GetAllProcesses(): Array<BaseProcess>;
+  GetAllProcesses(): Array<Process>;
 }
 
 export default ProcessesShape;

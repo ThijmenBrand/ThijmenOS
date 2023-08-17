@@ -1,12 +1,10 @@
-import { BaseProcess } from "@core/processManager/processes/baseProcess";
-import Thread from "@core/processManager/processes/thread";
-import { WindowProcessV2 } from "@core/processManager/processes/windowProcess";
+import { Process } from "@core/processManager/processes/process";
 import { ICommand } from "@ostypes/CommandTypes";
 import { WindowOptions } from "@ostypes/WindowTypes";
+import WindowBuilder from "@providers/gui/applicationWindow/windowConstructor";
 
 interface CreateWindowCommand {
   path: string;
-  args: string;
   windowOptions: WindowOptions;
 }
 
@@ -17,19 +15,18 @@ class CreateWindow implements ICommand {
     this._command = command;
   }
 
-  async Handle(process: BaseProcess<Thread>): Promise<number> {
-    const name = this._command.path.split("/").at(-1)?.split(".")[0];
-
-    const windowProcess = new WindowProcessV2(
+  async Handle(process: Process): Promise<number> {
+    const windowBuilder = new WindowBuilder(
       this._command.path,
-      name ?? "window",
-      this._command.windowOptions,
-      this._command.args
+      process.pid,
+      this._command.windowOptions
     );
 
-    process.AddResource.childProcess(windowProcess.pid);
+    const appWindow = await windowBuilder.Construct();
 
-    return windowProcess.pid;
+    process.AddResource.appWindow(appWindow);
+
+    return appWindow.id;
   }
 }
 

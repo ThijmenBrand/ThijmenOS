@@ -1,5 +1,5 @@
 import ProcessesShape from "@core/processManager/interfaces/processesShape";
-import { BaseProcess } from "@core/processManager/processes/baseProcess";
+import { Process } from "@core/processManager/processes/process";
 import javascriptOs from "@inversify/inversify.config";
 import { ICommand } from "@ostypes/CommandTypes";
 import types from "@ostypes/types";
@@ -15,7 +15,7 @@ class CloseMessageBus implements ICommand {
     this._msbId = msbId;
   }
 
-  Handle(process?: BaseProcess): number {
+  Handle(process?: Process): number {
     if (!process) return -1;
 
     const result = this._processes.FreeMessageBus(this._msbId, process.pid);

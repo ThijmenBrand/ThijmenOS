@@ -1,7 +1,7 @@
-import { BaseProcess } from "@core/processManager/processes/baseProcess";
+import { Process } from "@core/processManager/processes/process";
 import Exit from "@providers/error/systemErrors/Exit";
 interface ApplicationCommunicationModel<T> {
-  worker: BaseProcess;
+  worker: Process;
   exit: Exit<T>;
 }
 

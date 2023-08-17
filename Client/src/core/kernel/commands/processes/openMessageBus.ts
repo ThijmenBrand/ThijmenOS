@@ -1,5 +1,5 @@
 import ProcessesShape from "@core/processManager/interfaces/processesShape";
-import { BaseProcess } from "@core/processManager/processes/baseProcess";
+import { Process } from "@core/processManager/processes/process";
 import javascriptOs from "@inversify/inversify.config";
 import { ICommand } from "@ostypes/CommandTypes";
 import types from "@ostypes/types";
@@ -25,7 +25,7 @@ class OpenMessageQueue implements ICommand {
     this._bufferSize = args.bufferSize;
   }
 
-  Handle(process: BaseProcess): number {
+  Handle(process: Process): number {
     const result = this._processes.OpenMessageQueue(
       process.pid,
       this._name,

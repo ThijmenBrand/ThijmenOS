@@ -1,12 +1,12 @@
 import { Permissions } from "@thijmen-os/common";
 import Exit from "@providers/error/systemErrors/Exit";
-import { BaseProcess } from "@core/processManager/processes/baseProcess";
+import { Process } from "@core/processManager/processes/process";
 
 export interface ICommand<T = unknown> {
   requiredPermission?: Permissions;
 
   Handle(
-    process?: BaseProcess
+    process?: Process
   ):
     | Promise<Exit>
     | Promise<Exit | T>

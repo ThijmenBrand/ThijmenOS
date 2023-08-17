@@ -1,7 +1,7 @@
 import Thread from "@core/processManager/processes/thread";
 import { Class, ICommand } from "../../types/CommandTypes";
 import { ValidMethods } from "./kernelMethods";
-import { BaseProcess } from "@core/processManager/processes/baseProcess";
+import { Process } from "@core/processManager/processes/process";
 import ApplicationWindow from "@providers/gui/applicationWindow/applicationWindow";
 
 export interface ProcessMessage {
@@ -11,7 +11,7 @@ export interface ProcessMessage {
 }
 
 export interface JsOsCommunicationMessage extends ProcessMessage {
-  origin: BaseProcess<Thread | ApplicationWindow>;
+  origin: Process<Thread | ApplicationWindow>;
   pid: number;
 }
 

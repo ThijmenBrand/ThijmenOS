@@ -8,7 +8,7 @@ import ProcessesShape from "./interfaces/processesShape";
 import { ipcKey, processkey } from "@ostypes/memoryKeys";
 import FatalError from "@providers/error/userErrors/fatalError";
 import { GenerateId } from "@utils/generatePid";
-import { BaseProcess } from "./processes/baseProcess";
+import { Process } from "./processes/process";
 import MessageBus from "./ipc/messageBus";
 import MqFlag from "./types/messageQueueFlags";
 import Exit from "@providers/error/systemErrors/Exit";
@@ -36,7 +36,7 @@ class Processes implements ProcessesShape {
     this._memory.AllocateMemory(this._pid, ipcKey, []);
   }
 
-  public RegisterProcess = (process: BaseProcess): Exit => {
+  public RegisterProcess = (process: Process): Exit => {
     const processes = this.LoadProcesses();
 
     if (processes instanceof Exit) return processes;
@@ -47,7 +47,7 @@ class Processes implements ProcessesShape {
     return new Exit();
   };
 
-  public FindProcess(pid: number): BaseProcess | Exit {
+  public FindProcess(pid: number): Process | Exit {
     const processes = this.LoadProcesses();
 
     if (processes instanceof Exit) {
@@ -176,10 +176,10 @@ class Processes implements ProcessesShape {
     return messageBus;
   }
 
-  public GetAllProcesses(): BaseProcess[] {
+  public GetAllProcesses(): Process[] {
     const processes = this.LoadProcesses();
 
-    if (processes instanceof Exit) return new Array<BaseProcess>();
+    if (processes instanceof Exit) return new Array<Process>();
     return processes;
   }
 
@@ -192,8 +192,8 @@ class Processes implements ProcessesShape {
     return result ?? [];
   }
 
-  private LoadProcesses(): Array<BaseProcess> | Exit {
-    const result = this._memory.LoadFromMemory<Array<BaseProcess>>(
+  private LoadProcesses(): Array<Process> | Exit {
+    const result = this._memory.LoadFromMemory<Array<Process>>(
       this._pid,
       processkey
     );
@@ -201,12 +201,8 @@ class Processes implements ProcessesShape {
     return result ?? [];
   }
 
-  private SaveProcessesToMemory(processes: Array<BaseProcess>) {
-    this._memory.SaveToMemory<Array<BaseProcess>>(
-      this._pid,
-      processkey,
-      processes
-    );
+  private SaveProcessesToMemory(processes: Array<Process>) {
+    this._memory.SaveToMemory<Array<Process>>(this._pid, processkey, processes);
   }
 }
 

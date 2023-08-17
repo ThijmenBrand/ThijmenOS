@@ -3,7 +3,7 @@ import javascriptOs from "@inversify/inversify.config";
 import types from "@ostypes/types";
 import FileSystem from "@core/fileSystem/interfaces/fileSystem";
 import { FileAccessOptions } from "@core/fileSystem/enums/fileAccess";
-import { BaseProcess } from "@core/processManager/processes/baseProcess";
+import { Process } from "@core/processManager/processes/process";
 
 class FOpen implements ICommand {
   private readonly _fileSystem = javascriptOs.get<FileSystem>(types.FileSystem);
@@ -16,7 +16,7 @@ class FOpen implements ICommand {
     this._mode = props.mode;
   }
 
-  public async Handle(process: BaseProcess): Promise<string | number> {
+  public async Handle(process: Process): Promise<string | number> {
     const validated = this._fileSystem.ValidateAccess(this._path, this._mode);
 
     if (!validated) return 1;

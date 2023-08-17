@@ -2,7 +2,7 @@ import { ICommand } from "@ostypes/CommandTypes";
 import ProcessesShape from "@core/processManager/interfaces/processesShape";
 import javascriptOs from "@inversify/inversify.config";
 import types from "@ostypes/types";
-import { BaseProcess } from "@core/processManager/processes/baseProcess";
+import { Process } from "@core/processManager/processes/process";
 import { errors, success } from "../errors";
 import Exit from "@providers/error/systemErrors/Exit";
 
@@ -17,7 +17,7 @@ class Terminate implements ICommand {
     this._pid = pid;
   }
 
-  Handle(Process?: BaseProcess): number {
+  Handle(Process?: Process): number {
     if (Process && !this._pid) {
       this._pid = Process.pid;
     }

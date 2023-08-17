@@ -1,5 +1,5 @@
 import MemoryMethodShape from "@core/memory/memoryMethodShape";
-import { BaseProcess } from "@core/processManager/processes/baseProcess";
+import { Process } from "@core/processManager/processes/process";
 import javascriptOs from "@inversify/inversify.config";
 import { ICommand } from "@ostypes/CommandTypes";
 import types from "@ostypes/types";
@@ -19,7 +19,7 @@ class WriteMemory implements ICommand {
     this._data = args.data;
   }
 
-  public Handle(Process: BaseProcess): number | string {
+  public Handle(Process: Process): number | string {
     if (!this._memoryKey) {
       return 1;
     }

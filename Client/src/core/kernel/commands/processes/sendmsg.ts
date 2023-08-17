@@ -1,5 +1,5 @@
 import ProcessesShape from "@core/processManager/interfaces/processesShape";
-import { BaseProcess } from "@core/processManager/processes/baseProcess";
+import { Process } from "@core/processManager/processes/process";
 import javascriptOs from "@inversify/inversify.config";
 import { ICommand } from "@ostypes/CommandTypes";
 import types from "@ostypes/types";
@@ -20,7 +20,7 @@ class SendMsg implements ICommand {
     this._message = args.message;
   }
 
-  Handle(process: BaseProcess): string | number | null {
+  Handle(process: Process): string | number | null {
     const messageBus = this._processes.FindMessageBus(this._msqId);
     if (messageBus instanceof Exit) return -1;
 

@@ -2,7 +2,7 @@
 import ReadMSGModes from "@core/kernel/models/readMsgModes";
 import ProcessesShape from "@core/processManager/interfaces/processesShape";
 import MessageBus from "@core/processManager/ipc/messageBus";
-import { BaseProcess } from "@core/processManager/processes/baseProcess";
+import { Process } from "@core/processManager/processes/process";
 import MqFlag from "@core/processManager/types/messageQueueFlags";
 import javascriptOs from "@inversify/inversify.config";
 import { ICommand } from "@ostypes/CommandTypes";
@@ -22,7 +22,7 @@ class ReadMsg implements ICommand {
     this._mode = props.mode;
   }
 
-  async Handle(process: BaseProcess): Promise<string | number | null> {
+  async Handle(process: Process): Promise<string | number | null> {
     const messageBus = this._processes.FindMessageBus(this._msqId);
     if (messageBus instanceof Exit) return 1;
 

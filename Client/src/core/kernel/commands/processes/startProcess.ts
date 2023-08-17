@@ -1,6 +1,6 @@
-import { BaseProcess } from "@core/processManager/processes/baseProcess";
-import { ProcessV2 } from "@core/processManager/processes/process";
+import { Process } from "@core/processManager/processes/Process";
 import { ICommand } from "@ostypes/CommandTypes";
+import Exit from "@providers/error/systemErrors/Exit";
 import { ValidatePath } from "@providers/filesystemEndpoints/filesystem";
 
 //TODO: Provide functionality to give process args list file open path and such
@@ -15,7 +15,7 @@ class StartProcess implements ICommand {
     this._name = args.name;
   }
 
-  public async Handle(process?: BaseProcess): Promise<number> {
+  public async Handle(process?: Process): Promise<number> {
     const mimetype = this._exePath.split(".").at(-1);
 
     let name = this._name;
@@ -34,14 +34,12 @@ class StartProcess implements ICommand {
       return 2;
     }
 
-    const newProcess = new ProcessV2(
-      this._exePath,
-      name!,
-      this._args,
-      process?.pid
-    );
+    const newProcess = new Process(name!, this._exePath, process?.pid);
+    const status = newProcess.Initialise(this._args);
 
-    // process.AddResource.childProcess(newProcess.pid);
+    if (status instanceof Exit) return 1;
+
+    if (process) process.AddResource.childProcess(newProcess.pid);
 
     return newProcess.pid;
   }

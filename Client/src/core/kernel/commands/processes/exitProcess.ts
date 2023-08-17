@@ -2,7 +2,7 @@ import { ICommand } from "@ostypes/CommandTypes";
 import ProcessesShape from "@core/processManager/interfaces/processesShape";
 import javascriptOs from "@inversify/inversify.config";
 import types from "@ostypes/types";
-import { BaseProcess } from "@core/processManager/processes/baseProcess";
+import { Process } from "@core/processManager/processes/process";
 import Exit from "@providers/error/systemErrors/Exit";
 
 class ExitProcess implements ICommand {
@@ -16,7 +16,7 @@ class ExitProcess implements ICommand {
     this._code = code;
   }
 
-  Handle(process: BaseProcess): number {
+  Handle(process: Process): number {
     const result = this._processes.FindProcess(process.pid);
     if (result instanceof Exit) {
       return -1;

@@ -9,7 +9,7 @@ import StartProcess from "../processes/startProcess";
 import SelectAppPrompt from "@providers/dialog/selectApp";
 import { ApplicationMetaData } from "@thijmen-os/common";
 import KernelMethodShape from "@core/kernel/kernelMethodShape";
-import { BaseProcess } from "@core/processManager/processes/baseProcess";
+import { Process } from "@core/processManager/processes/process";
 
 class OpenFileCommand implements ICommand {
   private readonly _applicationManager: ApplicationManager =
@@ -26,7 +26,7 @@ class OpenFileCommand implements ICommand {
     this._props = props;
   }
 
-  public async Handle(process: BaseProcess): Promise<void> {
+  public async Handle(process: Process): Promise<void> {
     const defaultAppToOpen = this._settings.DefaultApplication(
       this._props.mimeType
     );

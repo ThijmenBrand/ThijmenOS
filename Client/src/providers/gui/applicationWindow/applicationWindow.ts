@@ -11,39 +11,49 @@ import { InitMovement } from "../helpers";
 import WindowOptions from "@ostypes/WindowTypes";
 import WindowElement from "./windowElement";
 import Terminate from "@core/kernel/commands/processes/terminateProcess";
+import { GenerateId } from "@utils/generatePid";
 
 class ApplicationWindow {
   private windowElement: WindowElement;
   private windowContent: HTMLIFrameElement;
-  private windowId: number
+  private pid: number;
+
+  public id: number;
 
   constructor(
-    windowId: number,
+    pid: number,
     windowOptions: WindowOptions,
     windowContent: HTMLIFrameElement
   ) {
-    this.windowId = windowId;
+    this.pid = pid;
+    this.id = GenerateId();
 
-    const winWidth = windowOptions.fullScreen ? window.innerWidth : windowOptions.width;
-    const winHeight = windowOptions.fullScreen ? window.innerHeight : windowOptions.height;
+    const winWidth = windowOptions.fullScreen
+      ? window.innerWidth
+      : windowOptions.width;
+    const winHeight = windowOptions.fullScreen
+      ? window.innerHeight
+      : windowOptions.height;
 
     this.windowElement = new WindowElement({
       height: winHeight,
-      width: winWidth, 
-      windowId: windowId, 
-      title: windowOptions.title
+      width: winWidth,
+      windowId: this.pid,
+      title: windowOptions.title,
     });
 
-    if(windowOptions.fullScreen) this.windowElement.FullSreen();
+    if (windowOptions.fullScreen) this.windowElement.FullSreen();
 
-    this.windowElement.Action("click", (ev: Event) => this.Click(ev)).register();
+    this.windowElement
+      .Action("click", (ev: Event) => this.Click(ev))
+      .register();
 
     this.windowContent = windowContent;
 
     this.Render(windowContent);
 
     setTimeout(() => {
-      InitMovement(windowId);
+      InitMovement(this.pid);
     }, 100);
   }
 
@@ -62,8 +72,7 @@ class ApplicationWindow {
         this.windowElement.FullSreen().yes();
       if (action === WindowDataActions.Minimize)
         this.windowElement.FullSreen().no();
-      if (action === WindowDataActions.Close)
-        new Terminate(this.windowId).Handle();
+      if (action === WindowDataActions.Close) new Terminate(this.pid).Handle();
     }
   }
 
